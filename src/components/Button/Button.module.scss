@@ -1,17 +1,13 @@
 .wrapper {
-    display: inline flex;
-    align-self: center;
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-
     min-width: 100px;
     padding: 9px 16px;
     border-radius: 4px;
-
     font-size: 1.6rem;
     font-weight: 700;
-    font-family: 'ProximaNova', sans-serif;
-
-
+    font-family: var(--font-family);
     cursor: pointer;
     background-color: var(--white);
     border: 1px solid transparent;
@@ -35,12 +31,13 @@
 .icon {
     display: inline-block;
     width: 24px;
-    text-align: left;
+    text-align: center;
 }
-//Button stpes
+
+// Button types
 .rounded {
     border-radius: 999px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 6%);
+    box-shadow: 0 2px 8px rgb(0 0 0 / 6%);
     border-color: rgba(22, 24, 35, 0.12);
 
     &:hover {
@@ -65,7 +62,8 @@
     border-color: currentColor;
 
     &:hover {
-        background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), #fe2c55;
+        border-color: currentColor;
+        background-color: rgba(254, 44, 85, 0.06);
     }
 }
 
@@ -74,8 +72,8 @@
         text-decoration: underline;
     }
 }
-//Disbled
-//Button sizes
+
+// Button sizes
 .small {
     min-width: 88px;
     padding: 4px 16px;
