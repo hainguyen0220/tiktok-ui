@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames/bind';
 
-import * as searchServices from '~/apiServices/searchServices';
+import * as searchServices from '~/services/searchService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import HeadlessTippy from '@tippyjs/react/headless';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
@@ -19,11 +19,11 @@ function Search() {
     const [showResult, setShowResult] = useState(true);
     const [loading, setLoading] = useState(false);
 
-    const debounced = useDebounce(searchValue, 500);
+    const debouncedValue = useDebounce(searchValue, 500);
     const inputRef = useRef();
 
     useEffect(() => {
-        if (!debounced.trim()) {
+        if (!debouncedValue.trim()) {
             setSearchResult([]);
             return;
         }
@@ -31,13 +31,13 @@ function Search() {
         const fetchApi = async () => {
             setLoading(true);
 
-            const result = await searchServices.search(debounced);
+            const result = await searchServices.search(debouncedValue);
             setSearchResult(result);
 
             setLoading(false);
         };
         fetchApi();
-    }, [debounced]);
+    }, [debouncedValue]);
 
     const handleClear = () => {
         setSearchValue('');
@@ -58,7 +58,7 @@ function Search() {
     };
 
     return (
-        ///su dung div 
+        ///su dung div
         <div>
             <HeadlessTippy
                 interactive
@@ -90,7 +90,7 @@ function Search() {
                         </button>
                     )}
                     {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
-    
+
                     <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
                         <SearchIcon />
                     </button>
